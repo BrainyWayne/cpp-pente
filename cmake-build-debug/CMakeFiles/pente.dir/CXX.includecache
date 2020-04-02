@@ -1,0 +1,36 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/franciseshun/Desktop/Algos/cpp-pente/Board.h
+iostream
+-
+Referee.h
+/Users/franciseshun/Desktop/Algos/cpp-pente/Referee.h
+
+/Users/franciseshun/Desktop/Algos/cpp-pente/Player.h
+iostream
+-
+array
+-
+
+/Users/franciseshun/Desktop/Algos/cpp-pente/Referee.h
+iostream
+-
+ctime
+-
+string
+-
+
+/Users/franciseshun/Desktop/Algos/cpp-pente/main.cpp
+iostream
+-
+Player.h
+/Users/franciseshun/Desktop/Algos/cpp-pente/Player.h
+Board.h
+/Users/franciseshun/Desktop/Algos/cpp-pente/Board.h
+
