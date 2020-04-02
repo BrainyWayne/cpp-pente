@@ -55,7 +55,11 @@ public:
             cout << "Player turn: " << player.player2name << endl;
         }
         cout << endl;
+
+
+        //generate random number between 1 and 6
         cout << "ROLL: " << referee.generateRandomNumber()<< endl;
+
         cout << "Select piece: " << endl;
 
 
@@ -63,6 +67,7 @@ public:
         //select piece
         referee.selectPiece();
 
+        //check player turn
         if(referee.player1turn){
             referee.movePiece('L', referee.selectedPiece, referee.randomNumber);
         } else {

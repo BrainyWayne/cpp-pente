@@ -7,10 +7,8 @@ int main() {
     Board board;
 
 
-    Referee referee;
-  //  do{
-        board.printBoard();
-  //  }while (!referee.cancelled);
+    //Initialize game
+    board.printBoard();
 
 
 
