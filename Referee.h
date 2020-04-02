@@ -18,6 +18,8 @@ public:
     string selectedPiece;
     int randomNumber;
     bool cancelled = false;
+    string pathwayHolderDown;
+    string pathwayHolderTop;
 
 
     void selectPiece(){
@@ -92,7 +94,39 @@ public:
                 for(int i = 0; i < 5; i++){
                     if(moveTo == std::stoi(player.player2[i][0])){
 
-                        if(player.player2[i][1] == " "){
+
+                        if(player.player2[i][1] == pathwayHolderDown){
+                            string temp;
+                            temp = piece;
+                            for(int i = 0; i < 5; i++){
+                                if(piece == player.player1[i][1]){
+
+                                    //
+                                    cout << player.player1[i][1] << " is now ";
+                                    //
+                                    player.player1[i][1] = " ";
+                                    //
+                                    cout << player.player1[i][1];
+                                    //
+
+
+                                  for(int i = 0; i<4; i++){
+                                      if(player.lowerSacred[i] == " "){
+                                          player.lowerSacred[i] = temp;
+                                          player.player1score++;
+                                          break;
+                                      }
+                                  }
+
+
+
+                                }
+                            }
+
+                            refreshOutPut();
+                        }
+
+                        else if(player.player2[i][1] == " "){
                             //will place
                             //DEBUG
                             cout << "Can be placed" << endl;
@@ -132,6 +166,20 @@ public:
 
                         } else {
                             cout << "This position is already occupied" << endl;
+
+                            //Ability to forfeit
+                            cout <<"Do you want to try again? y/n" << endl;
+                            string forfeit;
+                            cin >> forfeit;
+
+                            if(forfeit == "y" || forfeit == "Y"){
+                                refreshOutPut();
+                            } else if(forfeit == "n" || forfeit == "N"){
+                                //move to player 2
+                                player1turn = false;
+                                refreshOutPut();
+                            }
+
                         }
 
                         //break;
@@ -140,6 +188,137 @@ public:
 
 
                 break;
+            }
+            case 'N':{
+                {
+
+                    for(int i = 0; i < 5; i++){
+                        if(piece == player.player1[i][1]){
+                            //DEBUG
+                            cout << piece << " is currently at position " << player.player1[i][0] << endl;
+
+                            //DEBUG
+
+                            piecePosition = player.player1[i][0];
+                        }
+                    }
+
+                    //convert position to integer
+                    try {
+                        piecePositionInteger = std::stoi(piecePosition);
+                        std::cout << piecePositionInteger << "\n";
+                    }
+                    catch (...) {
+                        std::cerr << "ERROR!\n";
+                    }
+
+                    int moveTo = piecePositionInteger + moveBy;
+
+                    if(moveTo > 10){
+                        moveTo -= 10;
+                    }
+
+                    //DEBUG
+                    cout << "Moving to position: " << moveTo << endl;
+                    //DEBUG
+
+                    //checking if the space is already occupied
+                    for(int i = 0; i < 5; i++){
+                        if(moveTo == std::stoi(player.player2[i][0])){
+
+
+                            if(player.player2[i][1] == pathwayHolderDown){
+                                string temp;
+                                temp = piece;
+                                for(int i = 0; i < 5; i++){
+                                    if(piece == player.player1[i][1]){
+
+                                        //
+                                        cout << player.player1[i][1] << " is now ";
+                                        //
+                                        player.player1[i][1] = " ";
+                                        //
+                                        cout << player.player1[i][1];
+                                        //
+
+
+                                        for(int i = 0; i<4; i++){
+                                            if(player.lowerSacred[i] == " "){
+                                                player.lowerSacred[i] = temp;
+                                                player.player1score++;
+                                                break;
+                                            }
+                                        }
+
+
+
+                                    }
+                                }
+
+                                refreshOutPut();
+                            }
+
+                            else if(player.player2[i][1] == " "){
+                                //will place
+                                //DEBUG
+                                cout << "Can be placed" << endl;
+                                //DEBUG
+
+                                //placing the piece
+                                string temp;
+                                temp = piece;
+
+
+
+                                for(int i = 0; i < 5; i++){
+                                    if(piece == player.player1[i][1]){
+
+                                        //
+                                        cout << player.player1[i][1] << " is now ";
+                                        //
+                                        player.player1[i][1] = " ";
+                                        //
+                                        cout << player.player1[i][1];
+                                        //
+
+
+                                        player.player2[moveTo][1] = temp;
+                                        //
+                                        cout << "New p2 value: " << player.player2[moveTo][1];
+                                        //
+
+
+
+                                    }
+                                }
+
+
+
+                                refreshOutPut();
+
+                            } else {
+                                cout << "This position is already occupied" << endl;
+
+                                //Ability to forfeit
+                                cout <<"Do you want to try again? y/n" << endl;
+                                string forfeit;
+                                cin >> forfeit;
+
+                                if(forfeit == "y" || forfeit == "Y"){
+                                    refreshOutPut();
+                                } else if(forfeit == "n" || forfeit == "N"){
+                                    //move to player 2
+                                }
+
+                            }
+
+                            //break;
+                        }
+                    }
+
+
+                    break;
+                }
             }
         }
 
@@ -175,6 +354,9 @@ public:
         cout << endl << endl;
         cout << "L score: " << player.player1score << endl;
         cout << "N score: " << player.player2score << endl;
+
+        if()
+
         cout << "Player turn: " << player.player1name << endl;
         cout << endl;
         cout << "ROLL: " << generateRandomNumber()<< endl;
@@ -191,5 +373,15 @@ public:
 
     }
 
+
+    void setCurrentPathwayHolderDown(string holder){
+        pathwayHolderDown = holder;
+        cout << "Current down path way holder is " << pathwayHolderDown << endl;
+    }
+
+    void setCurrentPathwayHolderTop(string holder){
+        pathwayHolderTop = holder;
+        cout << "Current top path way holder is " << pathwayHolderTop << endl;
+    }
 
 };

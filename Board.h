@@ -45,12 +45,16 @@ public:
         cout << "  \t" << " |" << player.lowerSacred[3]<< "|" << endl;
         cout << "  \t" << " ---" << endl;
         cout << endl << endl;
+        referee.setCurrentPathwayHolderDown(player.player2[2][1]);
+        referee.setCurrentPathwayHolderTop(player.player1[2][1]);
         cout << "L score: " << player.player1score << endl;
         cout << "N score: " << player.player2score << endl;
         cout << "Player turn: " << player.player1name << endl;
         cout << endl;
         cout << "ROLL: " << referee.generateRandomNumber()<< endl;
         cout << "Select piece: " << endl;
+
+
 
         //select piece
         referee.selectPiece();
