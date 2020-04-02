@@ -7,6 +7,8 @@ using namespace std;
 
 class Player {
 
+
+
 public:
     string player1[5][5] = {{"10","A"},{"9","B"},{"8","C"},{"7","D"},{"6","E"},};
     string player2[5][5] = {{"1","1"},{"2","2"},{"3","3"},{"4","4"},{"5","5"},};
@@ -19,7 +21,15 @@ public:
 
 
 
-    string playerTurn()
+
+
+    char playerTurn(bool turn){
+        if(turn){
+            return 'L';
+        } else {
+            return 'N';
+        }
+    }
 
 
 

@@ -10,7 +10,7 @@ class Referee{
 
 private:
 
-    bool player1turn = true;
+
 
 
 
@@ -20,6 +20,7 @@ public:
     bool cancelled = false;
     string pathwayHolderDown;
     string pathwayHolderTop;
+    bool player1turn = true;
 
 
     void selectPiece(){
@@ -38,10 +39,6 @@ public:
         }
     }
 
-    bool isPlayerOneturn(){
-
-        return player1turn;
-    }
 
     int generateRandomNumber(){
         srand((unsigned)time(0));
@@ -59,6 +56,11 @@ public:
 
         switch (nextPlayer){
             case 'L':{
+
+                if(piece == "1" || piece == "2" || piece == "3" || piece == "4" || piece == "5" ){
+                    cout << endl << "You picked the wrong piece" << endl;
+                    refreshOutPut();
+                }
 
                 for(int i = 0; i < 5; i++){
                     if(piece == player.player1[i][1]){
@@ -90,12 +92,17 @@ public:
                 cout << "Moving to position: " << moveTo << endl;
                 //DEBUG
 
+                if(moveTo == 10 || moveTo == 9 || moveTo == 8 || moveTo == 7 || moveTo == 6 ){
+                    cout << endl << "You cant place here" << endl;
+                    refreshOutPut();
+                }
+
                 //checking if the space is already occupied
                 for(int i = 0; i < 5; i++){
                     if(moveTo == std::stoi(player.player2[i][0])){
 
 
-                        if(player.player2[i][1] == pathwayHolderDown){
+                        if(player.player2[i][0] == pathwayHolderDown){
                             string temp;
                             temp = piece;
                             for(int i = 0; i < 5; i++){
@@ -193,13 +200,13 @@ public:
                 {
 
                     for(int i = 0; i < 5; i++){
-                        if(piece == player.player1[i][1]){
+                        if(piece == player.player2[i][1]){
                             //DEBUG
-                            cout << piece << " is currently at position " << player.player1[i][0] << endl;
+                            cout << piece << " is currently at position " << player.player2[i][0] << endl;
 
                             //DEBUG
 
-                            piecePosition = player.player1[i][0];
+                            piecePosition = player.player2[i][0];
                         }
                     }
 
@@ -209,7 +216,7 @@ public:
                         std::cout << piecePositionInteger << "\n";
                     }
                     catch (...) {
-                        std::cerr << "ERROR!\n";
+                      //  std::cerr << "ERROR!\n";
                     }
 
                     int moveTo = piecePositionInteger + moveBy;
@@ -218,34 +225,39 @@ public:
                         moveTo -= 10;
                     }
 
+                    if(moveTo < 6){
+                        cout << endl << "You cant place here" << endl;
+                        refreshOutPut();
+                    }
+
                     //DEBUG
                     cout << "Moving to position: " << moveTo << endl;
                     //DEBUG
 
                     //checking if the space is already occupied
                     for(int i = 0; i < 5; i++){
-                        if(moveTo == std::stoi(player.player2[i][0])){
+                        if(moveTo == std::stoi(player.player1[i][0])){
 
 
-                            if(player.player2[i][1] == pathwayHolderDown){
+                            if(player.player1[i][0] == pathwayHolderTop){
                                 string temp;
                                 temp = piece;
                                 for(int i = 0; i < 5; i++){
-                                    if(piece == player.player1[i][1]){
+                                    if(piece == player.player2[i][1]){
 
                                         //
-                                        cout << player.player1[i][1] << " is now ";
+                                        cout << player.player2[i][1] << " is now ";
                                         //
-                                        player.player1[i][1] = " ";
+                                        player.player2[i][1] = " ";
                                         //
-                                        cout << player.player1[i][1];
+                                        cout << player.player2[i][1];
                                         //
 
 
                                         for(int i = 0; i<4; i++){
-                                            if(player.lowerSacred[i] == " "){
-                                                player.lowerSacred[i] = temp;
-                                                player.player1score++;
+                                            if(player.upperSacred[i] == " "){
+                                                player.upperSacred[i] = temp;
+                                                player.player2score++;
                                                 break;
                                             }
                                         }
@@ -258,7 +270,7 @@ public:
                                 refreshOutPut();
                             }
 
-                            else if(player.player2[i][1] == " "){
+                            else if(player.player1[i][1] == " "){
                                 //will place
                                 //DEBUG
                                 cout << "Can be placed" << endl;
@@ -271,20 +283,20 @@ public:
 
 
                                 for(int i = 0; i < 5; i++){
-                                    if(piece == player.player1[i][1]){
+                                    if(piece == player.player2[i][1]){
 
                                         //
-                                        cout << player.player1[i][1] << " is now ";
+                                        cout << player.player2[i][1] << " is now ";
                                         //
-                                        player.player1[i][1] = " ";
+                                        player.player2[i][1] = " ";
                                         //
-                                        cout << player.player1[i][1];
+                                        cout << player.player2[i][1];
                                         //
 
 
-                                        player.player2[moveTo][1] = temp;
+                                        player.player1[moveTo][1] = temp;
                                         //
-                                        cout << "New p2 value: " << player.player2[moveTo][1];
+                                        cout << "New p1 value: " << player.player1[moveTo][1];
                                         //
 
 
@@ -307,7 +319,8 @@ public:
                                 if(forfeit == "y" || forfeit == "Y"){
                                     refreshOutPut();
                                 } else if(forfeit == "n" || forfeit == "N"){
-                                    //move to player 2
+                                    //move to player 1
+                                    player1turn = true;
                                 }
 
                             }
@@ -355,17 +368,22 @@ public:
         cout << "L score: " << player.player1score << endl;
         cout << "N score: " << player.player2score << endl;
 
-        if()
 
-        cout << "Player turn: " << player.player1name << endl;
+        if(player1turn){
+            cout << "Player turn: " << player.player1name << endl;
+        } else{
+            cout << "Player turn: " << player.player2name << endl;
+        }
+
+
         cout << endl;
         cout << "ROLL: " << generateRandomNumber()<< endl;
-        cout << "Select piece: " << endl;
+        cout << "Select piece: " ;
 
         //select piece
         selectPiece();
 
-        if(isPlayerOneturn()){
+        if(player1turn){
             movePiece('L', selectedPiece, randomNumber);
         } else {
             movePiece('N', selectedPiece, randomNumber);

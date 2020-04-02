@@ -45,11 +45,15 @@ public:
         cout << "  \t" << " |" << player.lowerSacred[3]<< "|" << endl;
         cout << "  \t" << " ---" << endl;
         cout << endl << endl;
-        referee.setCurrentPathwayHolderDown(player.player2[2][1]);
-        referee.setCurrentPathwayHolderTop(player.player1[2][1]);
+        referee.setCurrentPathwayHolderDown(player.player2[2][0]);
+        referee.setCurrentPathwayHolderTop(player.player1[2][0]);
         cout << "L score: " << player.player1score << endl;
         cout << "N score: " << player.player2score << endl;
-        cout << "Player turn: " << player.player1name << endl;
+        if(referee.player1turn){
+            cout << "Player turn: " << player.player1name << endl;
+        } else{
+            cout << "Player turn: " << player.player2name << endl;
+        }
         cout << endl;
         cout << "ROLL: " << referee.generateRandomNumber()<< endl;
         cout << "Select piece: " << endl;
@@ -59,7 +63,7 @@ public:
         //select piece
         referee.selectPiece();
 
-        if(referee.isPlayerOneturn()){
+        if(referee.player1turn){
             referee.movePiece('L', referee.selectedPiece, referee.randomNumber);
         } else {
             referee.movePiece('N', referee.selectedPiece, referee.randomNumber);
