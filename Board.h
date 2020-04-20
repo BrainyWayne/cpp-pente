@@ -19,14 +19,14 @@ public:
 
     void printBoard(){
 
-        cout << "  \t" << " ---" << endl;
-        cout << "  \t" << " |" << player.upperSacred[3] << "|" << endl;
-        cout << "  \t" << " ---" << endl;
-        cout << "  \t" << " |" << player.upperSacred[2] << "|" << endl;
-        cout << "  \t" << " ---" << endl;
-        cout << "  \t" << " |" << player.upperSacred[1] << "|" << endl;
-        cout << "  \t" << " ---" << endl;
-        cout << "  \t" << " |" << player.upperSacred[0]<< "|" << endl;
+        cout << "  " << "   ---" << endl;
+        cout << "  " << "   |" << player.upperSacred[3] << "|" << endl;
+        cout << "  " << "   ---" << endl;
+        cout << "  " << "   |" << player.upperSacred[2] << "|" << endl;
+        cout << "  " << "   ---" << endl;
+        cout << "  " << "   |" << player.upperSacred[1] << "|" << endl;
+        cout << "  " << "   ---" << endl;
+        cout << "  " << "   |" << player.upperSacred[0]<< "|" << endl;
         cout << "  ---------" << endl;
         cout << "  |" << player.player1[1][1] << "|" <<  "|" << player.player1[2][1]<< "|"  << "|" << player.player1[3][1] << "|" << endl;
         cout << " ------------" << endl;
@@ -36,14 +36,14 @@ public:
         cout << "--------------" << endl;
         cout << "  |" << player.player2[1][1] << "|" <<  "|" << player.player2[2][1] << "|"  << "|" << player.player2[3][1]  << "|" << endl;
         cout << "  ---------" << endl;
-        cout << "  \t" << " |" << player.lowerSacred[0] << "|" << endl;
-        cout << "  \t" << " ---" << endl;
-        cout << "  \t" << " |" << player.lowerSacred[1] << "|" << endl;
-        cout << "  \t" << " ---" << endl;
-        cout << "  \t" << " |" << player.lowerSacred[2] << "|" << endl;
-        cout << "  \t" << " ---" << endl;
-        cout << "  \t" << " |" << player.lowerSacred[3]<< "|" << endl;
-        cout << "  \t" << " ---" << endl;
+        cout << "  " << "   |" << player.lowerSacred[0] << "|" << endl;
+        cout << "  " << "   ---" << endl;
+        cout << "  " << "   |" << player.lowerSacred[1] << "|" << endl;
+        cout << "  " << "   ---" << endl;
+        cout << "  " << "   |" << player.lowerSacred[2] << "|" << endl;
+        cout << "  " << "   ---" << endl;
+        cout << "  " << "   |" << player.lowerSacred[3]<< "|" << endl;
+        cout << "  " << "   ---" << endl;
         cout << endl << endl;
         referee.setCurrentPathwayHolderDown(player.player2[2][0]);
         referee.setCurrentPathwayHolderTop(player.player1[2][0]);

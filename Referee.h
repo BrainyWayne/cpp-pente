@@ -26,6 +26,12 @@ public:
     //input piece
     void selectPiece(){
         cin >> selectedPiece;
+        if(selectedPiece == "P" || selectedPiece == "p"){
+            if(player1turn){
+                player1turn = !player1turn;
+                refreshOutPut();
+            }
+        }
     }
 
 
@@ -276,6 +282,11 @@ public:
 
 
                             if(player.player1[i][0] == pathwayHolderTop){
+
+                                if(player.player2score == 4){
+                                    cout << endl << endl << "PLAYER N WINS!!!" << endl;
+                                }
+
                                 string temp;
                                 temp = piece;
                                 for(int i = 0; i < 5; i++){
@@ -329,35 +340,7 @@ public:
                                 refreshOutPut();
 
                       }
-//                            else if(moveTo < 6){
-//                                cout << endl << "Localized move" << endl;
 //
-//                                for(int i = 0; i<5; i++){
-//                                    if(player.player2[i][0] == to_string(moveTo)){
-//                                        if(player.player2[i][1] == " "){
-//
-//                                            player.player2[i][1] = piece;
-//
-//
-//                                        } else {
-//                                            cout << "This space is occupied" << endl;
-//                                            //Ability to forfeit
-//                                            cout <<"Do you want to try again? y/n" << endl;
-//                                            string forfeit;
-//                                            cin >> forfeit;
-//
-//                                            if(forfeit == "y" || forfeit == "Y"){
-//                                                refreshOutPut();
-//                                            } else if(forfeit == "n" || forfeit == "N"){
-//                                                //move to player 1
-//                                                player1turn = true;
-//                                                refreshOutPut();
-//                                            }
-//                                        }
-//                                    }
-//                                }
-//
-//                            }
                             else {
                                 cout << "This position is already occupied" << endl;
 
@@ -390,14 +373,14 @@ public:
 
 
     void refreshOutPut(){
-        cout << "  \t" << " ---" << endl;
-        cout << "  \t" << " |" << player.upperSacred[3] << "|" << endl;
-        cout << "  \t" << " ---" << endl;
-        cout << "  \t" << " |" << player.upperSacred[2] << "|" << endl;
-        cout << "  \t" << " ---" << endl;
-        cout << "  \t" << " |" << player.upperSacred[1] << "|" << endl;
-        cout << "  \t" << " ---" << endl;
-        cout << "  \t" << " |" << player.upperSacred[0]<< "|" << endl;
+        cout << "  " << "   ---" << endl;
+        cout << "  " << "   |" << player.upperSacred[3] << "|" << endl;
+        cout << "  " << "   ---" << endl;
+        cout << "  " << "   |" << player.upperSacred[2] << "|" << endl;
+        cout << "  " << "   ---" << endl;
+        cout << "  " << "   |" << player.upperSacred[1] << "|" << endl;
+        cout << "  " << "   ---" << endl;
+        cout << "  " << "   |" << player.upperSacred[0]<< "|" << endl;
         cout << "  ---------" << endl;
         cout << "  |" << player.player1[1][1] << "|" <<  "|" << player.player1[2][1]<< "|"  << "|" << player.player1[3][1] << "|" << endl;
         cout << " ------------" << endl;
@@ -407,14 +390,14 @@ public:
         cout << "--------------" << endl;
         cout << "  |" << player.player2[1][1] << "|" <<  "|" << player.player2[2][1] << "|"  << "|" << player.player2[3][1]  << "|" << endl;
         cout << "  ---------" << endl;
-        cout << "  \t" << " |" << player.lowerSacred[0] << "|" << endl;
-        cout << "  \t" << " ---" << endl;
-        cout << "  \t" << " |" << player.lowerSacred[1] << "|" << endl;
-        cout << "  \t" << " ---" << endl;
-        cout << "  \t" << " |" << player.lowerSacred[2] << "|" << endl;
-        cout << "  \t" << " ---" << endl;
-        cout << "  \t" << " |" << player.lowerSacred[3]<< "|" << endl;
-        cout << "  \t" << " ---" << endl;
+        cout << "  " << "   |" << player.lowerSacred[0] << "|" << endl;
+        cout << "  " << "   ---" << endl;
+        cout << "  " << "   |" << player.lowerSacred[1] << "|" << endl;
+        cout << "  " << "   ---" << endl;
+        cout << "  " << "   |" << player.lowerSacred[2] << "|" << endl;
+        cout << "  " << "   ---" << endl;
+        cout << "  " << "   |" << player.lowerSacred[3]<< "|" << endl;
+        cout << "  " << "   ---" << endl;
         cout << endl << endl;
         cout << "L score: " << player.player1score << endl;
         cout << "N score: " << player.player2score << endl;
